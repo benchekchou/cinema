@@ -1,6 +1,23 @@
 package org.example.cenima.Service;
 
-import org.example.cenima.DAO.*;
+import org.example.cenima.entity.Categorie;
+import org.example.cenima.entity.Cinema;
+import org.example.cenima.entity.Film;
+import org.example.cenima.entity.Place;
+import org.example.cenima.entity.ProjectionFilm;
+import org.example.cenima.entity.Salle;
+import org.example.cenima.entity.Seance;
+import org.example.cenima.entity.Ticket;
+import org.example.cenima.entity.Ville;
+import org.example.cenima.repository.CategorieRepository;
+import org.example.cenima.repository.CinemaRepository;
+import org.example.cenima.repository.FilmRepository;
+import org.example.cenima.repository.PlaceRepository;
+import org.example.cenima.repository.ProjectionFilmRepository;
+import org.example.cenima.repository.SalleRepository;
+import org.example.cenima.repository.SeanceRepository;
+import org.example.cenima.repository.TicketRepository;
+import org.example.cenima.repository.VilleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -8,6 +25,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.Stream;
@@ -124,6 +142,7 @@ public class CinemaInitServiceImpl implements ICinemaInitService {
                  filmRepository.findAll().forEach(film -> {
                      seanceRepository.findAll().forEach(seance -> {
                          ProjectionFilm projectionFilm = new ProjectionFilm();
+                         projectionFilm.setDateProjection(new Date());
                          projectionFilm.setFilm(film);
                          projectionFilm.setPrix(prices[new Random().nextInt(prices.length)]);
                          projectionFilm.setSalle(salle);
